@@ -8,8 +8,6 @@ import moviePosters from '../data/movie_posters';
 // import { useState, useEffect } from 'react';
 
 // import movieDetails from '../data/movie_details';
-
-
 function App() {
   return (
     <main className='App'>
