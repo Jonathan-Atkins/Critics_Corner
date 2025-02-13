@@ -1,8 +1,10 @@
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MoviesContainer.css';
 
-function Movies({movies, downVote}) {
-
+function Movies({movies, downVote, upVote}) {
+  if (!movies) {
+    return <h2>Loading...</h2>
+}
   const movieCards = movies.map( movie => {
     return (
       <MoviePoster
@@ -11,6 +13,7 @@ function Movies({movies, downVote}) {
       title={movie.title}
       votes={movie.vote_count}
       downVote={downVote}
+      upVote={upVote}
       />
     
     )
