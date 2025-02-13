@@ -1,6 +1,7 @@
 .MoviePosters {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-around;
     background-color: white;
     margin: 50px;
@@ -11,6 +12,7 @@ p {
 }
 
 img {
-   width : 750px;
-    height: 1000px;
+    width : 750px;
+    height: auto;
+    display: block;
 }
