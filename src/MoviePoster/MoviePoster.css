@@ -1,0 +1,16 @@
+.MoviePosters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    margin: 50px;
+}
+
+p {
+    color: black;
+}
+
+img {
+   width : 750px;
+    height: 1000px;
+}
