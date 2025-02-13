@@ -1,28 +1,27 @@
 import './App.css';
-// import searchIcon from '../icons/search.png';
-import Movies from '../MoviesContainer/MoviesContainer';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import moviePosters from '../data/movie_posters';
 import { useState } from 'react';
 
-
-// Example imports (for later):
-
-
-// import movieDetails from '../data/movie_details';
-
-
 function App() {
+  const [movies, setMovies] = useState(moviePosters);
 
-  // const [movies, setMovies] = useState(movies)
-
+  const downVote = (id) => {
+    const updatedMovies = movies.map((movie) => {
+      if (movie.id === id) {
+        return { ...movie, vote_count: Math.max(movie.vote_count - 1, 0) };
+      } 
+      return movie; 
+    });
+    setMovies(updatedMovies);
+  };
 
   return (
     <main className='App'>
       <header>
         <h1>Rancid Tomatillos</h1>
-        <MoviesContainer movies={moviePosters}></MoviesContainer> 
       </header>
+      <MoviesContainer movies={movies} downVote={downVote} />
     </main>
   );
 }
