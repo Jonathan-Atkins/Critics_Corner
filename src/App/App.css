@@ -27,7 +27,7 @@ p {
   color: white;
 }
 
-MoviesContainer {
+.MoviesContainer {
   display: flex;
   justify-content: center;
   margin-top: 50px;
