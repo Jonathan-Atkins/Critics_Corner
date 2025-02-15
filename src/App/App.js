@@ -29,8 +29,11 @@ function App() {
     setMovies(updatedMovies);
   };
 
-  function findDetails() {
-      setDetails(movieDetails)
+  function findDetails(id) {
+    const selectedMovie = moviePosters.find(movie => movie.id === id);
+    setDetails({
+      ...movieDetails, title: selectedMovie.title 
+    });
   }
 
   return (
