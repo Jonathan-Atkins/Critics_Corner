@@ -8,6 +8,7 @@ function MovieDetails({ details }) {
   return (
     <section className="MovieDetails">
       <h2>{details.title}</h2>
+      <img src={details.backdrop_path} alt="Movie Poster"></img>
       <p>{details.overview}</p>
     </section>
   );

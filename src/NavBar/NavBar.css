@@ -1,0 +1,9 @@
+.navbar {
+    display : flex;
+    flex-wrap : wrap;
+    align-items: center;
+}
+
+img {
+   background-color: #3e49b1;
+}
