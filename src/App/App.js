@@ -1,33 +1,52 @@
 import './App.css';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
-import moviePosters from '../data/movie_posters';
-import movieDetails from '../data/movie_details';
-import MovieDetails from '../MovieDetails/MovieDetails';
-import NavBar from '../NavBar/NavBar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const API_URL = 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies';
 
 function App() {
-  const [movies, setMovies] = useState(moviePosters);
-  const [details , setDetails] = useState(null);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        console.log("Movies:", data);
+        setMovies(data || []); 
+      })
+      .catch(error => console.error("Error fetching movies:", error));
+  }, []);
+
+  const updateVote = (id, voteDirection) => {
+    // console.log('Vote Direction:', voteDirection, 'ID:', id);
+    fetch(`${API_URL}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ vote_direction: voteDirection })
+    })
+      .then((response) => response.json())
+      .then((updatedMovie) => {
+        setMovies((prevMovies) =>
+          prevMovies.map((movie) =>
+            movie.id === id ? { ...movie, vote_count: updatedMovie.vote_count } : movie
+          )
+        );
+      })
+      .catch((error) => console.error('Error updating vote:', error));
+  };
 
   const downVote = (id) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return { ...movie, vote_count: Math.max(movie.vote_count - 1, 0) };
-      } 
-      return movie; 
-    });
-    setMovies(updatedMovies);
+    const movie = movies.find((m) => m.id === id);
+    if (movie) {
+      updateVote(id, 'down'); 
+    }
   };
 
   const upVote = (id) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return {...movie, vote_count: movie.vote_count +1}
-      }
-      return movie;
-    })
-    setMovies(updatedMovies);
+    const movie = movies.find((m) => m.id === id);
+    if (movie) {
+      updateVote(id, 'up'); 
+    }
   };
 
   function findDetails(id) {
@@ -39,6 +58,10 @@ function App() {
 
   return (
     <main className='App'>
+      <header>
+        <h1>Rancid Tomatillos</h1>
+      </header>
+      <MoviesContainer movies={movies} downVote={downVote} upVote={upVote} />
       <NavBar setDetails={setDetails} details={details}/>
       {!details ? (<MoviesContainer movies={movies} downVote={downVote} upVote={upVote} findDetails={findDetails}/> )
       : ( <MovieDetails details={details}/>)}
