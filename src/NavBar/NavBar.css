@@ -1,9 +1,30 @@
-.navbar {
-    display : flex;
-    flex-wrap : wrap;
+.NavBar {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-img {
-   background-color: #3e49b1;
-}
+    background-color: black;
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .NavBar h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .NavBar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .NavBar button:hover {
+    transform: scale(1.1);
+  }
+  
+  .NavBar img {
+    width: 30px;
+    height: 30px;
+  }
