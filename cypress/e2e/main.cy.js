@@ -4,6 +4,7 @@ describe('all movies displayed', () => {
       fixture: 'movie_posters.json' 
     });
 
+ 
     cy.visit('http://localhost:3000');
   });
 
@@ -31,10 +32,29 @@ describe('all movies displayed', () => {
       })
   })
 
-  
+  it('User should be able to Upvote', () => {
+    cy.intercept('PATCH'  , 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155', {
+      fixture: 'movie_upvote.json'
+    })
+    cy.get('.upVote').first().click()
+    cy.get('p').first().contains('32545')
+  })
 
+  it('User should be able to Downvote', () => {
+    cy.intercept('PATCH'  , 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155', {
+      fixture: 'movie_downvote.json'
+    })
+    cy.get('.downVote').first().click()
+    cy.get('p').first().contains('32543')
+  })
 
-
+  it('Should be able to click on a movie poster and shown details', () => {
+    cy.get('img').first().click()
+    cy.get('h1').contains('Rancid Tomatillos')
+    cy.get('h2').contains('The Dark Knight')
+    cy.get('p').contains('Batman raises the stakes')
+  })
+});
 
 
   // it('should see the correct form', () =>{
@@ -71,4 +91,3 @@ describe('all movies displayed', () => {
   //   cy.get('button').click();
   //   cy.url().should('include', '/dashboard');
   // });
-});
