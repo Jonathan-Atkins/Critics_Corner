@@ -1,21 +1,34 @@
 import './App.css';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import NavBar from '../NavBar/NavBar';
+import MovieDetails from '../MovieDetails/MovieDetails';
 import { useState, useEffect } from 'react';
 
 const API_URL = 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [details, setDetails] = useState(null);
 
   useEffect(() => {
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
-        console.log("Movies:", data);
+        // console.log("Movies:", data);
         setMovies(data || []); 
       })
       .catch(error => console.error("Error fetching movies:", error));
   }, []);
+
+  function findDetails(id)  {
+    fetch(`${API_URL}/${id}`)
+    .then ((response) => response.json())
+    .then((movie) => {
+      // console.log('Movie', movie);
+      setDetails(movie);
+    })
+    .catch((error) => console.error("Error fetching details:", error));
+  };
 
   const updateVote = (id, voteDirection) => {
     // console.log('Vote Direction:', voteDirection, 'ID:', id);
@@ -49,24 +62,12 @@ function App() {
     }
   };
 
-  function findDetails(id) {
-    const selectedMovie = moviePosters.find(movie => movie.id === id);
-    setDetails({
-      ...movieDetails, title: selectedMovie.title 
-    });
-  }
-
   return (
     <main className='App'>
-      <header>
-        <h1>Rancid Tomatillos</h1>
-      </header>
-      <MoviesContainer movies={movies} downVote={downVote} upVote={upVote} />
       <NavBar setDetails={setDetails} details={details}/>
       {!details ? (<MoviesContainer movies={movies} downVote={downVote} upVote={upVote} findDetails={findDetails}/> )
       : ( <MovieDetails details={details}/>)}
     </main>
   );
 }
-
 export default App;

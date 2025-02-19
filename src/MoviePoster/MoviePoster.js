@@ -1,4 +1,5 @@
 import './MoviePoster.css';
+import { useState } from 'react';
 
 function MoviePoster({poster, id, votes, downVote, upVote, findDetails}) {
   
