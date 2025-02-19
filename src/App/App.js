@@ -49,12 +49,22 @@ function App() {
     }
   };
 
+  function findDetails(id) {
+    const selectedMovie = moviePosters.find(movie => movie.id === id);
+    setDetails({
+      ...movieDetails, title: selectedMovie.title 
+    });
+  }
+
   return (
     <main className='App'>
       <header>
         <h1>Rancid Tomatillos</h1>
       </header>
       <MoviesContainer movies={movies} downVote={downVote} upVote={upVote} />
+      <NavBar setDetails={setDetails} details={details}/>
+      {!details ? (<MoviesContainer movies={movies} downVote={downVote} upVote={upVote} findDetails={findDetails}/> )
+      : ( <MovieDetails details={details}/>)}
     </main>
   );
 }

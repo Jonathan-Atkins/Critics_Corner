@@ -1,10 +1,10 @@
 import './MoviePoster.css';
 
-function MoviePoster({poster, id, votes, downVote, upVote}) {
+function MoviePoster({poster, id, votes, downVote, upVote, findDetails}) {
   
   return (
     <section className='MoviePosters'>
-      <img className="Poster" src={poster} alt="Poster Goes Here"></img>
+      <img className="Poster" onClick={() => findDetails(id)} src={poster} alt="Poster Goes Here"></img>
       <p>{votes}</p>
       <section className='voteButtons'> 
       <button onClick={() => downVote(id)}>👎</button>
