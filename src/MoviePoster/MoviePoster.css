@@ -10,6 +10,7 @@
 .Poster {
    width: 100%;
    height: auto;
+   border-radius: 10px;
 }
 
 .MoviePosters:hover {
