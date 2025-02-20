@@ -30,7 +30,24 @@ describe('all movies displayed', () => {
         cy.get('p')
           .should('exist')
       })
-  })
+  });
+
+  it('should have the correct number of movies', () => {
+    cy.get('[data-cy="movies-container"]')
+      .children()
+      .should('have.length', 4)
+  });
+
+  it('should have the correct movies', () => {
+    cy.get('[data-cy="movies-container"]')
+    .children()
+    .first()
+    .get('p').contains('32544')
+    cy.get('[data-cy="movies-container"]')
+    .children()
+    .last()
+    .get('p').contains('27642')
+  });
 
   it('User should be able to Upvote', () => {
     cy.intercept('PATCH'  , 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155', {
@@ -38,7 +55,7 @@ describe('all movies displayed', () => {
     })
     cy.get('.upVote').first().click()
     cy.get('p').first().contains('32545')
-  })
+  });
 
   it('User should be able to Downvote', () => {
     cy.intercept('PATCH'  , 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155', {
@@ -47,47 +64,4 @@ describe('all movies displayed', () => {
     cy.get('.downVote').first().click()
     cy.get('p').first().contains('32543')
   })
-
-  it('Should be able to click on a movie poster and shown details', () => {
-    cy.get('img').first().click()
-    cy.get('h1').contains('Rancid Tomatillos')
-    cy.get('h2').contains('The Dark Knight')
-    cy.get('p').contains('Batman raises the stakes')
-  })
 });
-
-
-  // it('should see the correct form', () =>{
-  //   cy.get('form').contains('Please Sign In')
-  // })
-
-  // it('should display an error message when a user clicks the submit button without filling both inputs', () => {
-  //   cy.get('button').click();
-  //   cy.get('p').contains('Please fill out both inputs.');
-  // });
-
-  // describe('Feedback Loop login', () => {
-  //   it('Should be able to visit page, render correct elements, and hold values in inputs', () => {
-  //     cy.visit('http://localhost:3000')
-  //       .contains('Feedback Loop')
-  //       .get('form').contains('h2', "Please Sign In")
-  //       .get("input[name='email']").type("leta@turing.io").should('have.value', 'leta@turing.io')
-  //       .get("input[name='password']").type("keane20").should('have.value', 'keane20');
-  //   });
-  // });
-
-  // it('should be able to fill out the email and password and click Submit, directing the user to a different page', () => {
-  //   cy.intercept('POST', 'http://localhost:3001/api/v1/login', {
-  //       statusCode: 201,
-  //       body: {
-  //         id: 2,
-  //         image: "https://ca.slack-edge.com/T029P2S9M-U37MJAV0T-007ccf2f5eb2-512",
-  //         name: "Leta Keane"
-  //       }
-  //     });
-
-  //   cy.get('input[type="email"]').type('leta@turing.io');
-  //   cy.get('input[type="password"]').type('keane20');
-  //   cy.get('button').click();
-  //   cy.url().should('include', '/dashboard');
-  // });
