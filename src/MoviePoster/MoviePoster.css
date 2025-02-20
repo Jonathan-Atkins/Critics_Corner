@@ -10,10 +10,10 @@ p {
     color: black;
 }
 
-img {
-   width: 750px;
-   height: 1000px;
-}
+.MoviePosters .Poster {
+    width: 750px;
+    height: 1000px;
+  }
 
 .voteButtons {
     display: flex;

@@ -1,17 +1,47 @@
+.MovieDetailsContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
 .MovieDetails {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  z-index: 1;
 }
 
-img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.MovieDetails img {
+  max-width: 34%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 p {
-    background-color: black ;
-    color: white;
+  background-color: black;
+  color: white;
+}
+
+.BackgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay */
+  z-index: 0;
+}
+
+.MovieInfo {
+  position: relative;
+  z-index: 1;
 }
