@@ -18,15 +18,6 @@ function Home() {
       .catch(error => console.error("Error fetching movies:", error));
   }, []);
 
-  function findDetails(id)  {
-    fetch(`${API_URL}/${id}`)
-    .then ((response) => response.json())
-    .then((movie) => {
-      setDetails(movie);
-    })
-    .catch((error) => console.error("Error fetching details:", error));
-  };
-
   const updateVote = (id, voteDirection) => {
     fetch(`${API_URL}/${id}`, {
       method: 'PATCH',
@@ -61,7 +52,7 @@ function Home() {
   return (
     <main className='Home'>
         <NavBar setDetails={setDetails} details={details}/>
-        <MoviesContainer movies={movies} downVote={downVote} upVote={upVote} findDetails={findDetails}/> 
+        <MoviesContainer movies={movies} downVote={downVote} upVote={upVote}/> 
     </main>
   );
 }

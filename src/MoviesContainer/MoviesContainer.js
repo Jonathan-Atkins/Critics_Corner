@@ -1,7 +1,7 @@
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MoviesContainer.css';
 
-function Movies({ movies, downVote, upVote, findDetails }) {
+function Movies({ movies, downVote, upVote }) {
   if (!movies) {
     return <h2>Loading...</h2>;
   }
@@ -16,7 +16,6 @@ function Movies({ movies, downVote, upVote, findDetails }) {
         votes={movie.vote_count}
         downVote={downVote}
         upVote={upVote}
-        findDetails={findDetails}
       />
     );
   });
