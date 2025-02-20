@@ -2,17 +2,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: white;
+    background-color: rgb(12, 2, 2);
     margin: 50px;
+    border-radius: 10px;
 }
 
-p {
-    color: black;
+.Poster {
+   width: 100%;
+   height: auto;
 }
 
-img {
-   width: 750px;
-   height: 1000px;
+.MoviePosters:hover {
+    transform: scale(1.1);
 }
 
 .voteButtons {
