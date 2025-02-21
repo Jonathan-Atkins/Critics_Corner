@@ -23,7 +23,7 @@ h2 {
 }
 
 .MovieDetails img {
-  max-width:20%;
+  max-width:25%;
   height: auto;
   display: block;
   margin-left: auto;
@@ -34,7 +34,18 @@ h2 {
 p {
   background-color: black;
   color: white;
+  font-family: 'Fauna One', serif;
+  font-size: 28px;  
+  text-align: center;
+  text-wrap-style: balance;
+  -webkit-text-stroke-width: medium;
 }
+
+li {
+  font-family: 'Fauna One', serif;
+  font-size: 16px;  
+}
+  
 
 .BackgroundOverlay {
   position: absolute;
@@ -50,3 +61,4 @@ p {
   position: relative;
   z-index: 1;
 }
+

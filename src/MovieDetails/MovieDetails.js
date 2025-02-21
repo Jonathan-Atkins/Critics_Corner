@@ -33,6 +33,12 @@ function MovieDetails() {
           <h2>{details.title}</h2>
           <img src={details.poster_path} alt="Movie Poster" />
           <p>{details.overview}</p>
+          <h3>Genres:</h3>
+          <ul>
+            {details.genre_ids.map((genre, index) => (
+              <li key={index}>{genre}</li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>
